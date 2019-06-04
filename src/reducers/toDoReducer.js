@@ -18,14 +18,13 @@ const toDoReducer = (state = initialState, action) => {
       return { ...state, currentNotes: state.currentNotes.filter(note => note.id !== action.id) }
 
     case 'UPDATE_NOTE_IN_CURRENT_STATE':
-        let noteIndex = state.currentNotes.findIndex(note => note.id !== action.newNote.id);
-        state.currentNotes[noteIndex] = {
-          id: action.newNote.id,
-          name: action.newNote.name,
-          description: action.newNote.description,
-          creationDate: action.newNote.creationDate,
-        };
-        return { ...state, currentNotes: state.currentNotes}
+      return { ...state, currentNotes: state.currentNotes.map( note => {
+        if (note.id === action.newNote.id) {
+          note.name = action.newNote.name
+          note.description = action.newNote.description
+        }
+        return note
+      })}
 
     case 'UPDATE_TODO_HISTORY_LIST':
       return { ...state, toDoHistoryList: [...state.toDoHistoryList, {
