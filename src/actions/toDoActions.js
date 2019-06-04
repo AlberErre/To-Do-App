@@ -24,3 +24,12 @@ export const removeNoteFromState = (id) => {
     })
   };
 }
+
+export const updateNoteFromState = (newNote) => {
+  return dispatch => {
+    dispatch({
+      type: "UPDATE_NOTE_IN_CURRENT_STATE",
+      newNote
+    })
+  };
+}
