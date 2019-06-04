@@ -44,24 +44,30 @@ class App extends Component {
 
     if (noteData.noteText.value || noteData.noteTitle.value) {
       let note = {
-        id: Math.random,
+        id: Math.random(),
         name: noteData.noteTitle.value,
         description: noteData.noteText.value,
         creationDate: Date.now()
       };
 
-      db.ref(toDoHistoryChannel).push(note);
       this.props.toDoActions.addNoteToState(note);
-      event.target.elements.noteTitle.value = '';
-      event.target.elements.noteText.value = '';
+      db.ref(toDoHistoryChannel).push(
+        Object.assign(note, { action: "ADD"})
+      );
+      noteData.noteTitle.value = '';
+      noteData.noteText.value = '';
     }
-  }
+  };
 
   render() {
     return (
       <div>
-        <ToDoForm/>
-        <NotesContainer />
+        <ToDoForm
+          addNote={this.addNote}
+        />
+        <NotesContainer
+          currentNotes={this.props.currentNotes}
+        />
         <HistoryList />
       </div>
     );
@@ -69,11 +75,12 @@ class App extends Component {
 }
 
 const mapSateToProps = state => ({
+  currentNotes: state.currentNotes,
   toDoHistoryList: state.toDoHistoryList
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  chatActions: bindActionCreators({
+  toDoActions: bindActionCreators({
     updateToDoHistoryList,
     addNoteToState
   }, dispatch)

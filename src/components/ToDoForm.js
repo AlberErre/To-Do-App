@@ -4,9 +4,9 @@ import DescriptionInput from './DescriptionInput';
 import ColorPicker from './ColorPicker';
 import "../App.css";
 
-const ToDoForm = () => {
+const ToDoForm = (props) => {
   return (
-    <form >
+    <form onSubmit={props.addNote}>
       <TitleInput />
       <DescriptionInput />
       <ColorPicker />
