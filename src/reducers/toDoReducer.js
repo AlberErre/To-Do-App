@@ -1,4 +1,7 @@
-const initialState = {};
+const initialState = {
+  currentNotes: [],
+  toDoHistoryList: [],
+};
 
 const toDoReducer = (state = initialState, action) => {
   switch(action.type) {

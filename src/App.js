@@ -25,6 +25,8 @@ const db = firebase.database();
 class App extends Component {
   constructor(props) {
     super(props)
+
+    this.addNote = this.addNote.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +35,25 @@ class App extends Component {
       let data = snapshot.val();     
       this.props.toDoActions.updateToDoHistoryList(data);
     });
+  }
+
+  addNote(event) {
+    event.preventDefault();
+
+    let noteData = event.target.elements;
+
+    if (noteData.noteText.value || noteData.noteTitle.value) {
+      let note = {
+        id: Math.random,
+        name: noteData.noteTitle.value,
+        description: noteData.noteText.value,
+        creationDate: Date.now()
+      };
+  
+      db.ref(toDoHistoryChannel).push(note);
+      event.target.elements.noteTitle.value = '';
+      event.target.elements.noteText.value = '';
+    }
   }
     
   render() {
