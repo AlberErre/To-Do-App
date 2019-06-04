@@ -6,6 +6,7 @@ import { updateToDoHistoryList, addNoteToState, removeNoteFromState, updateNoteF
 import ToDoForm from './components/ToDoForm';
 import NotesContainer from './components/NotesContainer';
 import HistoryList from './components/HistoryList';
+import {v1 as uuid} from 'uuid';
 import "./App.css";
 
 const firebaseConfig = {
@@ -46,7 +47,7 @@ class App extends Component {
 
     if (noteData.noteText.value || noteData.noteTitle.value) {
       let note = {
-        id: Math.random(),
+        id: uuid(),
         name: noteData.noteTitle.value,
         description: noteData.noteText.value,
         creationDate: Date.now()
