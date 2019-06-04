@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import firebase from 'firebase';
+import { firebaseConfig, toDoHistoryChannel } from './firebaseConfig';
 import { updateToDoHistoryList, addNoteToState, removeNoteFromState, updateNoteFromState } from "./actions/toDoActions";
 import ToDoForm from './components/ToDoForm';
 import NotesContainer from './components/NotesContainer';
@@ -9,17 +10,6 @@ import HistoryList from './components/HistoryList';
 import {v1 as uuid} from 'uuid';
 import "./App.css";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBP9ZLy0_FBCPozb_gxV0H70Efx-P_SEqg",
-  authDomain: "to-do-app-1a886.firebaseapp.com",
-  databaseURL: "https://to-do-app-1a886.firebaseio.com",
-  projectId: "to-do-app-1a886",
-  storageBucket: "to-do-app-1a886.appspot.com",
-  messagingSenderId: "846775201712",
-  appId: "1:846775201712:web:1ff06fa7c97acd63"
-};
-
-const toDoHistoryChannel = "toDoHistory_channel_01";
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
