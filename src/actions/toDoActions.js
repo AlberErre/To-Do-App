@@ -15,3 +15,12 @@ export const addNoteToState = (note) => {
     })
   };
 }
+
+export const removeNoteFromState = (id) => {
+  return dispatch => {
+    dispatch({
+      type: "REMOVE_NOTE_FROM_CURRENT_STATE",
+      id
+    })
+  };
+}

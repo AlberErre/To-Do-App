@@ -14,6 +14,9 @@ const toDoReducer = (state = initialState, action) => {
         creationDate: action.note.creationDate,
       }]}
 
+    case 'REMOVE_NOTE_FROM_CURRENT_STATE':
+      return { ...state, currentNotes: state.currentNotes.filter(note => note.id !== action.id) }
+
     case 'UPDATE_TODO_HISTORY_LIST':
       return { ...state, toDoHistoryList: [...state.toDoHistoryList, {
         name: action.historyData.name,
