@@ -6,3 +6,12 @@ export const updateToDoHistoryList = (data) => {
     })
   };
 }
+
+export const addNoteToState = (note) => {
+  return dispatch => {
+    dispatch({
+      type: "ADD_NOTE_TO_CURRENT_STATE",
+      note
+    })
+  };
+}

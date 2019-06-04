@@ -32,7 +32,7 @@ class App extends Component {
   componentDidMount() {
 
     db.ref(toDoHistoryChannel).on("child_added", snapshot => {
-      let data = snapshot.val();     
+      let data = snapshot.val();
       this.props.toDoActions.updateToDoHistoryList(data);
     });
   }
@@ -49,13 +49,14 @@ class App extends Component {
         description: noteData.noteText.value,
         creationDate: Date.now()
       };
-  
+
       db.ref(toDoHistoryChannel).push(note);
+      this.props.toDoActions.addNoteToState(note);
       event.target.elements.noteTitle.value = '';
       event.target.elements.noteText.value = '';
     }
   }
-    
+
   render() {
     return (
       <div>
@@ -73,7 +74,8 @@ const mapSateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   chatActions: bindActionCreators({
-    updateToDoHistoryList
+    updateToDoHistoryList,
+    addNoteToState
   }, dispatch)
 });
 
