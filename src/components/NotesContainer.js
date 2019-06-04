@@ -16,6 +16,7 @@ class NotesContainer extends Component {
                   <Note
                     noteInfo={note}
                     removeNote={this.props.removeNote}
+                    updateNote={this.props.updateNote}
                   />
                 </div>
             );

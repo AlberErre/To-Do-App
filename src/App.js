@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import firebase from 'firebase';
-import { updateToDoHistoryList, addNoteToState, removeNoteFromState } from "./actions/toDoActions";
+import { updateToDoHistoryList, addNoteToState, removeNoteFromState, updateNoteFromState } from "./actions/toDoActions";
 import ToDoForm from './components/ToDoForm';
 import NotesContainer from './components/NotesContainer';
 import HistoryList from './components/HistoryList';
@@ -28,6 +28,7 @@ class App extends Component {
 
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
+    this.updateNote = this.updateNote.bind(this);
   }
 
   componentDidMount() {
@@ -72,6 +73,21 @@ class App extends Component {
     this.props.toDoActions.removeNoteFromState(id);
   };
 
+  updateNote(id, newInfo) {
+    this.props.currentNotes.forEach( note => {
+      if (note.id === id) {
+        let newNote = Object.assign(note, {
+          name: newInfo.name,
+          description: newInfo.description
+        });
+        this.props.toDoActions.updateNoteFromState(newNote);
+        db.ref(toDoHistoryChannel).push(
+          Object.assign(newNote, { action: "EDIT"})
+        );
+      }
+    });
+  };
+
   render() {
     return (
       <div>
@@ -81,6 +97,7 @@ class App extends Component {
         <NotesContainer
           currentNotes={this.props.currentNotes}
           removeNote={this.removeNote}
+          updateNote={this.updateNote}
         />
         <HistoryList />
       </div>
@@ -97,7 +114,8 @@ const mapDispatchToProps = (dispatch) => ({
   toDoActions: bindActionCreators({
     updateToDoHistoryList,
     addNoteToState,
-    removeNoteFromState
+    removeNoteFromState,
+    updateNoteFromState
   }, dispatch)
 });
 
