@@ -5,9 +5,9 @@ const toDoReducer = (state = initialState, action) => {
 
     case 'UPDATE_TODO_HISTORY_LIST': 
       return { ...state, toDoHistoryList: [...state.toDoHistoryList, {
-        action.historyData.name,
-        action.historyData.description,
-        action.historyData.creationDate,
+        name: action.historyData.name,
+        description: action.historyData.description,
+        creationDate: action.historyData.creationDate,
       }]}
 
     default:

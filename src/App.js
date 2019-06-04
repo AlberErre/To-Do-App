@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from "react-redux";
 import firebase from 'firebase';
 import { updateToDoHistoryList } from "./actions/toDoActions";
 import "./App.css";
@@ -26,7 +28,7 @@ class App extends Component {
 
     db.ref(toDoHistoryChannel).on("child_added", snapshot => {
       let data = snapshot.val();     
-      this.props.toDoActions.updateToDoHistoryList(data.name, data.description, data.creationDate);
+      this.props.toDoActions.updateToDoHistoryList(data);
     });
   }
     
@@ -38,4 +40,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapSateToProps = state => ({
+  toDoHistoryList: state.toDoHistoryList
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  chatActions: bindActionCreators({
+    updateToDoHistoryList
+  }, dispatch)
+});
+
+export default connect(mapSateToProps, mapDispatchToProps)(App);
