@@ -1,13 +1,13 @@
 import React from "react";
 import "../App.css";
 
-const TitleInput = () => {
+const TitleInput = (props) => {
   return (
 	<input
-		type="text"
+    type="text"
 		name="noteTitle"
-		className="inputField"
-		placeholder="Note name..."
+    className="inputField"
+    placeholder={(props.currentValue) ? props.currentValue : "Name..."}
 	/>
   );
 };
