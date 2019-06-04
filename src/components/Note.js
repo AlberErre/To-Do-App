@@ -13,7 +13,7 @@ const Note = (props) => {
       <span className="note-edit">
         edit
       </span>
-      <span className="note-delete">
+      <span onClick={() => props.removeNote(props.noteInfo.id)} className="note-delete">
         ×
       </span>
     </div>
