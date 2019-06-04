@@ -9,6 +9,7 @@ class NotesContainer extends Component {
     return (
       <div>
         {
+          this.props.currentNotes &&
           this.props.currentNotes.map( (note, i) => {
             return (
                 <div key={i}> 

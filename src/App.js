@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import firebase from 'firebase';
-import { updateToDoHistoryList } from "./actions/toDoActions";
+import { updateToDoHistoryList, addNoteToState } from "./actions/toDoActions";
 import ToDoForm from './components/ToDoForm';
 import NotesContainer from './components/NotesContainer';
 import HistoryList from './components/HistoryList';
