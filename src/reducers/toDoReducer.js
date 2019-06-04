@@ -28,9 +28,12 @@ const toDoReducer = (state = initialState, action) => {
 
     case 'UPDATE_TODO_HISTORY_LIST':
       return { ...state, toDoHistoryList: [...state.toDoHistoryList, {
+        id: action.historyData.id,
         name: action.historyData.name,
         description: action.historyData.description,
         creationDate: action.historyData.creationDate,
+        action: action.historyData.action,
+        firebaseKey: action.historyData.firebaseKey
       }]}
 
     default:

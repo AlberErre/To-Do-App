@@ -20,12 +20,14 @@ class App extends Component {
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
     this.updateNote = this.updateNote.bind(this);
+    this.clearFirebaseHistory = this.clearFirebaseHistory.bind(this);
   }
 
   componentDidMount() {
 
     db.ref(toDoHistoryChannel).on("child_added", snapshot => {
       let data = snapshot.val();
+      Object.assign(data, { firebaseKey: snapshot.key });
       this.props.toDoActions.updateToDoHistoryList(data);
     });
   }
@@ -78,6 +80,12 @@ class App extends Component {
       }
     });
   };
+
+  clearFirebaseHistory() {
+    this.props.toDoHistoryList.forEach( note => {
+      db.ref(toDoHistoryChannel).child(note.firebaseKey).remove();
+    });
+  }
 
   render() {
     return (
