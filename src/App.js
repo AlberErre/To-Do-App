@@ -3,6 +3,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import firebase from 'firebase';
 import { updateToDoHistoryList } from "./actions/toDoActions";
+import ToDoForm from './components/ToDoForm';
+import NotesContainer from './components/NotesContainer';
+import HistoryList from './components/HistoryList';
 import "./App.css";
 
 const firebaseConfig = {
@@ -34,7 +37,10 @@ class App extends Component {
     
   render() {
     return (
-      <div>     
+      <div>
+        <ToDoForm/>
+        <NotesContainer />
+        <HistoryList />
       </div>
     );
   }
