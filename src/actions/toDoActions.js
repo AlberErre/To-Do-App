@@ -41,3 +41,19 @@ export const updateNoteFromState = (newNote) => {
     })
   };
 }
+
+export const toggleToDoForm = () => {
+  return dispatch => {
+    dispatch({
+      type: "TOGGLE_TODO_FORM"
+    })
+  };
+}
+
+export const toggleHistoryModal = () => {
+  return dispatch => {
+    dispatch({
+      type: "TOGGLE_HISTORY_MODAL"
+    })
+  };
+}

@@ -1,6 +1,8 @@
 const initialState = {
   currentNotes: [],
   toDoHistoryList: [],
+  formOpened: false,
+  historyModalOpened: false
 };
 
 const toDoReducer = (state = initialState, action) => {
@@ -38,6 +40,12 @@ const toDoReducer = (state = initialState, action) => {
 
     case 'CLEAR_TODO_HISTORY_LIST':
         return { ...state, toDoHistoryList: [] }
+
+    case 'TOGGLE_TODO_FORM':
+        return { ...state, formOpened: !state.formOpened }
+
+    case 'TOGGLE_HISTORY_MODAL':
+        return { ...state, historyModalOpened: !state.historyModalOpened }
 
     default:
       return state

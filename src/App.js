@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import firebase from 'firebase';
 import { firebaseConfig, toDoHistoryChannel } from './firebaseConfig';
-import { updateToDoHistoryList, addNoteToState, removeNoteFromState, updateNoteFromState, clearToDoList } from "./actions/toDoActions";
+import { updateToDoHistoryList, addNoteToState, removeNoteFromState, updateNoteFromState,
+        clearToDoList, toggleToDoForm, toggleHistoryModal} from "./actions/toDoActions";
 import ToDoForm from './components/ToDoForm';
 import NotesContainer from './components/NotesContainer';
 import HistoryList from './components/HistoryList';
@@ -18,18 +19,11 @@ const db = firebase.database();
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      formOpened: false,
-      historyModalOpened: false
-    };
 
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
     this.updateNote = this.updateNote.bind(this);
     this.clearFirebaseHistory = this.clearFirebaseHistory.bind(this);
-    this.toggleToDoForm = this.toggleToDoForm.bind(this);
-    this.toggleHistoryModal = this.toggleHistoryModal.bind(this);
-
   }
 
   componentDidMount() {
@@ -61,7 +55,7 @@ class App extends Component {
       noteData.noteTitle.value = '';
       noteData.noteText.value = '';
 
-      this.toggleToDoForm();
+      this.props.toDoActions.toggleToDoForm();
     }
   };
 
@@ -99,27 +93,17 @@ class App extends Component {
     this.props.toDoActions.clearToDoList();
   }
 
-  toggleToDoForm() {
-    this.setState(prevState => ({
-      formOpened: !prevState.formOpened
-    }));
-  }
-
-  toggleHistoryModal() {
-    this.setState(prevState => ({
-      historyModalOpened: !prevState.historyModalOpened
-    }));
-  }
-
   render() {
     return (
       <div>
         <AppBar title="To Do App"
-          endContent={<Button mode="strong" onClick={() => this.toggleToDoForm()}> Add To Do </Button>}>
-          <Button mode="outline" onClick={() => this.toggleHistoryModal()}> History data </Button>
+          endContent={<Button mode="strong" onClick={() => this.props.toDoActions.toggleToDoForm()}>
+                        Add To Do
+                      </Button>}>
+          <Button mode="outline" onClick={() => this.props.toDoActions.toggleHistoryModal()}> History data </Button>
         </AppBar>
 
-        <SidePanel title="New To Do" opened={this.state.formOpened} onClose={() => this.toggleToDoForm()}>
+        <SidePanel title="New To Do" opened={this.props.formOpened} onClose={() => this.props.toDoActions.toggleToDoForm()}>
         {
           <ToDoForm
             addNote={this.addNote}
@@ -134,13 +118,13 @@ class App extends Component {
         />
 
         <Modal
-          visible={this.state.historyModalOpened}
+          visible={this.props.historyModalOpened}
           width={viewport => Math.min(viewport.width - 50)}
-          onClose={() => this.toggleHistoryModal()}>
+          onClose={() => this.props.toDoActions.toggleHistoryModal()}>
           {
             <HistoryList
               toDoHistoryList={this.props.toDoHistoryList}
-              toggleHistoryModal={this.toggleHistoryModal}
+              toggleHistoryModal={this.props.toDoActions.toggleHistoryModal}
               clearFirebaseHistory={this.clearFirebaseHistory}
             />
           }
@@ -152,7 +136,9 @@ class App extends Component {
 
 const mapSateToProps = state => ({
   currentNotes: state.currentNotes,
-  toDoHistoryList: state.toDoHistoryList
+  toDoHistoryList: state.toDoHistoryList,
+  formOpened: state.formOpened,
+  historyModalOpened: state.historyModalOpened
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -161,7 +147,9 @@ const mapDispatchToProps = (dispatch) => ({
     clearToDoList,
     addNoteToState,
     removeNoteFromState,
-    updateNoteFromState
+    updateNoteFromState,
+    toggleToDoForm,
+    toggleHistoryModal
   }, dispatch)
 });
 
