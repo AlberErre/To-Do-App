@@ -9,6 +9,7 @@ import NotesContainer from './components/NotesContainer';
 import HistoryList from './components/HistoryList';
 import {v1 as uuid} from 'uuid';
 import { Button, AppBar, SidePanel, Modal } from '@aragon/ui';
+import moment from 'moment';
 import "./App.css";
 
 firebase.initializeApp(firebaseConfig);
@@ -50,7 +51,7 @@ class App extends Component {
         id: uuid(),
         name: noteData.noteTitle.value,
         description: noteData.noteText.value,
-        creationDate: Date.now()
+        creationDate: moment(Date.now()).format('MMMM Do YYYY, h:mm:ss a')
       };
 
       this.props.toDoActions.addNoteToState(note);
