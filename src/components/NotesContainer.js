@@ -7,7 +7,7 @@ class NotesContainer extends Component {
   render() {
     
     return (
-      <div>
+      <div className="notesContainer">
         {
           this.props.currentNotes &&
           this.props.currentNotes.map( (note, i) => {

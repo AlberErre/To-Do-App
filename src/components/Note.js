@@ -63,7 +63,7 @@ class Note extends Component {
         {
           this.state.editMode &&
           <div className="note">
-            <form onSubmit={this.finishEdit}>
+            <form onSubmit={this.finishEdit} className="editNoteContainer">
               <div className="note-title">
                 <TitleInput
                   currentValue={this.props.noteInfo.name}
@@ -72,9 +72,10 @@ class Note extends Component {
               <div className="note-text">
                 <DescriptionInput
                   currentValue={this.props.noteInfo.description}
+                  customRows={"2"}
                 />
               </div>
-              <button className="note-edit">
+              <button className="addToDoButton">
                 finish
               </button>
             </form>

@@ -1,14 +1,15 @@
 import React from "react";
+import { TextInput } from '@aragon/ui';
 import "../App.css";
 
 const TitleInput = (props) => {
   return (
-	<input
-    type="text"
-		name="noteTitle"
-    className="inputField"
-    placeholder={(props.currentValue) ? props.currentValue : "Name..."}
-	/>
+    <TextInput
+      wide
+      type="text"
+      name="noteTitle"
+      placeholder={(props.currentValue) ? props.currentValue : "Title..."}
+    />
   );
 };
 

@@ -6,11 +6,14 @@ import "../App.css";
 
 const ToDoForm = (props) => {
   return (
-    <form onSubmit={props.addNote}>
+    <form onSubmit={props.addNote} className="toDoFormContainer">
       <TitleInput />
       <DescriptionInput />
-      <ColorPicker />
-      <button>Add ToDo</button>
+      <div className="innerToDoFormContainer">
+        <button className="addToDoButton">
+          Add ToDo
+        </button>
+      </div>
     </form>
   );
 };
