@@ -31,6 +31,15 @@
   margin-top: 15px;
 }
 
+.emptyNotesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  width: 100%;
+}
+
 .notesContainer {
   display: flex;
   flex-wrap: wrap;
