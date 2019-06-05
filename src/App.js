@@ -8,6 +8,7 @@ import ToDoForm from './components/ToDoForm';
 import NotesContainer from './components/NotesContainer';
 import HistoryList from './components/HistoryList';
 import {v1 as uuid} from 'uuid';
+import { Button, AppBar, SidePanel } from '@aragon/ui'
 import "./App.css";
 
 firebase.initializeApp(firebaseConfig);
@@ -16,11 +17,15 @@ const db = firebase.database();
 class App extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      formOpened: false
+    };
 
     this.addNote = this.addNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
     this.updateNote = this.updateNote.bind(this);
     this.clearFirebaseHistory = this.clearFirebaseHistory.bind(this);
+    this.toggleToDoForm = this.toggleToDoForm.bind(this);
   }
 
   componentDidMount() {
@@ -51,6 +56,8 @@ class App extends Component {
       );
       noteData.noteTitle.value = '';
       noteData.noteText.value = '';
+
+      this.toggleToDoForm();
     }
   };
 
@@ -87,12 +94,28 @@ class App extends Component {
     });
   }
 
+  toggleToDoForm() {
+    this.setState(prevState => ({
+      formOpened: !prevState.formOpened
+    }));
+  }
+
   render() {
     return (
       <div>
-        <ToDoForm
-          addNote={this.addNote}
-        />
+        <AppBar title="To Do App"
+          endContent={<Button mode="strong" onClick={() => this.toggleToDoForm()}> Add To Do </Button>}>
+          <Button mode="outline"> History data </Button>
+        </AppBar>
+
+        <SidePanel title="New To Do" opened={this.state.formOpened} onClose={() => this.toggleToDoForm()}>
+        {
+          <ToDoForm
+            addNote={this.addNote}
+          />
+        }
+        </SidePanel>
+
         <NotesContainer
           currentNotes={this.props.currentNotes}
           removeNote={this.removeNote}
