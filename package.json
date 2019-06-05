@@ -8,6 +8,7 @@
     "build": "rm -rf build/* && node_modules/.bin/parcel build public/index.html --no-source-maps -d build/output --public-url /experiments/todoapp/"
   },
   "dependencies": {
+    "@aragon/ui": "^0.40.1",
     "firebase": "^5.5.9",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -15,6 +16,7 @@
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^4.2.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
