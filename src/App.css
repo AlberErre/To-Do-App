@@ -127,3 +127,22 @@
   color: #FFFFFF;
   background-image: linear-gradient( 130deg,#00B4E6,#00F0E0 );
 }
+
+.historyModalButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding-top: 20px;
+  border-top: 1px solid #E6E6E6;
+}
+
+.historyTableContainer {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  margin-top: 20px;
+  border-right: 1px solid #E6E6E6;
+  overflow-x: scroll;
+}
