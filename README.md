@@ -4,7 +4,9 @@ React To Do App - using firebase to store user history behaviour 🔥💻
 ## Live Demo:  https://albererre.com/experiments/todoapp/
 
 ## Details 
-To Do app to `add`, `update` and `delete` To Do's - all actions taken by the user are stored in a firebase database instance. You can easily access this history data by clicking on the top-right icon 📖.
+To Do app to `add`, `update` and `delete` To Do's - all actions taken by the user are stored in a firebase database instance. You can easily access this history data by clicking on the 'History data' button 📖. 
+
+Built using [aragon-ui](https://ui.aragon.org/)  🎨 to style it up!  
 
 ## Quick Start 
 ```
