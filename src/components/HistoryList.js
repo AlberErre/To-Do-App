@@ -24,7 +24,7 @@ const HistoryList = (props) => {
             </TableRow>
           }>
         {
-          props.toDoHistoryList.map( toDo => {
+          props.toDoHistoryList.reverse().map( toDo => {
             return(
               <TableRow>
                 <TableCell>
