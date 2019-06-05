@@ -15,7 +15,7 @@ const toDoReducer = (state = initialState, action) => {
       }]}
 
     case 'REMOVE_NOTE_FROM_CURRENT_STATE':
-      return { ...state, currentNotes: state.currentNotes.filter(note => note.id !== action.id) }
+      return { ...state, currentNotes: state.currentNotes.filter( note => note.id !== action.id) }
 
     case 'UPDATE_NOTE_IN_CURRENT_STATE':
       return { ...state, currentNotes: state.currentNotes.map( note => {
@@ -35,6 +35,9 @@ const toDoReducer = (state = initialState, action) => {
         action: action.historyData.action,
         firebaseKey: action.historyData.firebaseKey
       }]}
+
+    case 'CLEAR_TODO_HISTORY_LIST':
+        return { ...state, toDoHistoryList: [] }
 
     default:
       return state

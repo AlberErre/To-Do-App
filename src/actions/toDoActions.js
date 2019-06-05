@@ -7,6 +7,14 @@ export const updateToDoHistoryList = (data) => {
   };
 }
 
+export const clearToDoList = () => {
+  return dispatch => {
+    dispatch({
+      type: "CLEAR_TODO_HISTORY_LIST"
+    })
+  };
+}
+
 export const addNoteToState = (note) => {
   return dispatch => {
     dispatch({

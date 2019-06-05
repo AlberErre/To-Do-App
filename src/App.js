@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from "react-redux";
 import firebase from 'firebase';
 import { firebaseConfig, toDoHistoryChannel } from './firebaseConfig';
-import { updateToDoHistoryList, addNoteToState, removeNoteFromState, updateNoteFromState } from "./actions/toDoActions";
+import { updateToDoHistoryList, addNoteToState, removeNoteFromState, updateNoteFromState, clearToDoList } from "./actions/toDoActions";
 import ToDoForm from './components/ToDoForm';
 import NotesContainer from './components/NotesContainer';
 import HistoryList from './components/HistoryList';
@@ -96,6 +96,7 @@ class App extends Component {
     this.props.toDoHistoryList.forEach( note => {
       db.ref(toDoHistoryChannel).child(note.firebaseKey).remove();
     });
+    this.props.toDoActions.clearToDoList();
   }
 
   toggleToDoForm() {
@@ -157,6 +158,7 @@ const mapSateToProps = state => ({
 const mapDispatchToProps = (dispatch) => ({
   toDoActions: bindActionCreators({
     updateToDoHistoryList,
+    clearToDoList,
     addNoteToState,
     removeNoteFromState,
     updateNoteFromState
