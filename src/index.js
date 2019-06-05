@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Main } from '@aragon/ui';
 import * as serviceWorker from './serviceWorker';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from "react-redux";
@@ -12,7 +13,9 @@ const store = createStore(toDoReducer, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Main publicUrl="/aragon-ui/">
+      <App />
+    </Main>
   </Provider> , document.getElementById('root')
 );
 
