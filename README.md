@@ -14,3 +14,7 @@ npm run dev
 ```
 npm run test 
 ``` 
+
+## Screenshot
+
+![example-screenshot](https://github.com/AlberErre/To-Do-App/blob/master/example-screenshot.png?raw=true)
