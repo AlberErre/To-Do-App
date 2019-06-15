@@ -82,7 +82,7 @@ const mockRemoveNoteAction = {
 
 describe("Reducer should work as expected", () => {
   test("should REMOVE previous note from ToDo's list by ID", () => {
-      expect(toDoReducer(initialState, mockRemoveNoteAction)).toEqual({
+      expect(toDoReducer(initialStateToEdit, mockRemoveNoteAction)).toEqual({
         currentNotes: [],
         toDoHistoryList: [],
         formOpened: false,
