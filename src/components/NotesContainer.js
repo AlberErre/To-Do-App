@@ -13,13 +13,13 @@ class NotesContainer extends Component {
           this.props.currentNotes &&
           this.props.currentNotes.map( (note, i) => {
             return (
-                <div key={i}>
+                <React.Fragment key={i}>
                   <Note
                     noteInfo={note}
                     removeNote={this.props.removeNote}
                     updateNote={this.props.updateNote}
                   />
-                </div>
+                </React.Fragment>
             );
           })
         }

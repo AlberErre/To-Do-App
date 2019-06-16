@@ -4,7 +4,7 @@ import "../App.css";
 
 const HistoryList = (props) => {
   return (
-    <div>
+    <React.Fragment>
       <div className="historyTableContainer">
         <Table
           header={
@@ -54,7 +54,7 @@ const HistoryList = (props) => {
           Clear history
         </Button>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 

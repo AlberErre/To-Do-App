@@ -95,7 +95,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <AppBar title="To Do App"
           endContent={<Button mode="strong" onClick={() => this.props.toDoActions.toggleToDoForm()}>
                         Add To Do
@@ -129,7 +129,7 @@ class App extends Component {
             />
           }
         </Modal>
-      </div>
+      </React.Fragment>
     );
   }
 }

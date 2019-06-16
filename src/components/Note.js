@@ -42,7 +42,7 @@ class Note extends Component {
   render() {
 
     return (
-      <div>
+      <React.Fragment>
         {
           !this.state.editMode &&
           <div className="note">
@@ -81,7 +81,7 @@ class Note extends Component {
             </form>
           </div>
         }
-      </div>
+      </React.Fragment>
     );
   }
 }
